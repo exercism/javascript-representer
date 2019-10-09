@@ -17,7 +17,8 @@ const DEFAULT_OPTIONS: ExecutionOptions = {
   pretty: false,
   exercise: '<no-exercise>',
   output: '<no-output>',
-  inputDir: '<no-input>'
+  inputDir: '<no-input>',
+  outputDir: '<no-dir>'
 }
 
 describe('LogOutput', () => {

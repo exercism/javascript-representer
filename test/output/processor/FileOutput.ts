@@ -15,7 +15,7 @@ function getWrittenFiles(): { [dir: string]: { [file: string]: string }} {
 }
 
 const CONTENTS = `My Fine Output`
-const DEFAULT_OPTIONS: Omit<ExecutionOptions, 'inputDir' | 'output'> = {
+const DEFAULT_OPTIONS: Omit<ExecutionOptions, 'outputDir' | 'inputDir' | 'output'> = {
   debug: false,
   dry: false,
   console: false,
@@ -28,7 +28,8 @@ describe('FileOutput', () => {
   describe('when the output path is writable', () => {
     const OUT_OPTIONS: ExecutionOptions = {
       inputDir: '/path/to/input',
-      output: 'analysis.out',
+      outputDir: '/path/to/output',
+      output: 'representation.out',
       ...DEFAULT_OPTIONS
     }
 
@@ -45,7 +46,7 @@ describe('FileOutput', () => {
       await FileOutput(Promise.resolve(CONTENTS), OUT_OPTIONS)
       const files = getWrittenFiles()
       expect(files).toMatchObject({
-        [path.normalize(OUT_OPTIONS.inputDir)]: {
+        [path.normalize(OUT_OPTIONS.outputDir)]: {
           [OUT_OPTIONS.output]: CONTENTS
         }
       })
@@ -56,11 +57,12 @@ describe('FileOutput', () => {
     const OUT_OPTIONS: ExecutionOptions = {
       ...DEFAULT_OPTIONS,
       inputDir: '/path/to/input',
-      output: 'analysis.out'
+      outputDir: '/path/to/output',
+      output: 'representation.out'
     }
 
     beforeEach(() => {
-      mockFiles({ [path.join(OUT_OPTIONS.inputDir, OUT_OPTIONS.output)]: 'Already Written' })
+      mockFiles({ [path.join(OUT_OPTIONS.outputDir, OUT_OPTIONS.output)]: 'Already Written' })
     })
 
     it('bubbles the unwritable error', async () => {
@@ -75,7 +77,8 @@ describe('FileOutput', () => {
     const OUT_OPTIONS: ExecutionOptions = {
       ...DEFAULT_OPTIONS,
       inputDir: '/not',
-      output: '/path/to/output/analysis.out'
+      outputDir: '/not',
+      output: '/path/to/output/representation.out'
     }
 
     beforeEach(() => {
@@ -115,7 +118,8 @@ describe('FileOutput', () => {
     const OUT_OPTIONS: ExecutionOptions = {
       ...DEFAULT_OPTIONS,
       inputDir: '/path/to/input',
-      output: 'analysis.out'
+      outputDir: '/path/to/output',
+      output: 'representation.out'
     }
 
     beforeEach(() => {
@@ -128,7 +132,7 @@ describe('FileOutput', () => {
 
       // Written at input dir
       expect(files).toMatchObject({
-        [path.normalize(OUT_OPTIONS.inputDir)]: {
+        [path.normalize(OUT_OPTIONS.outputDir)]: {
           [OUT_OPTIONS.output]: CONTENTS
         }
       })

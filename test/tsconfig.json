@@ -1,0 +1,14 @@
+{
+  "composite": true,
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "~src/*": ["../src/*"],
+      "~test/*": ["./*"]
+    },
+    "noEmit": true
+  },
+  "include": ["./", "../src"],
+  "exclude": ["./fixtures"]
+}

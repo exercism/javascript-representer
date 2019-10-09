@@ -5,6 +5,7 @@ export class ExecutionOptionsImpl implements ExecutionOptions {
   public console!: boolean
   public output!: string
   public inputDir!: string
+  public outputDir!: string
   public exercise!: string
   public dry!: boolean
   public noTemplates!: boolean
@@ -16,7 +17,7 @@ export class ExecutionOptionsImpl implements ExecutionOptions {
 
   public static create(): ExecutionOptions {
     const args = yargs
-      .usage('Usage: $0 <exercise> <input-directory> [options]')
+      .usage('Usage: $0 <exercise> <input-directory> [<output-directory>] [options]')
       .example('$0 two-fer ~/javascript/two-fer/128/', 'Represent the two-fer solution from the input directory "128"')
       .alias('d', 'debug')
       .alias('c', 'console')
@@ -34,7 +35,7 @@ export class ExecutionOptionsImpl implements ExecutionOptions {
       .default('c', process.env.NODE_ENV === 'development')
       .default('noTemplates', false)
       .default('p', false)
-      .default('o', './analysis.json')
+      .default('o', './representation.txt')
       .default('dry', false)
       .help('h')
       .alias('h', 'help')
@@ -49,7 +50,8 @@ export class ExecutionOptionsImpl implements ExecutionOptions {
       dry,
       noTemplates,
       exercise: _[0],
-      inputDir: _[1]
+      inputDir: _[1],
+      outputDir: _[2] || _[1],
     })
   }
 }
