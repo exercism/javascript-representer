@@ -50,7 +50,10 @@ function normaliseRepresentation(
   }
 }
 
-function findOrMapIdentifier(name: string, mapping: { [k: string]: string }) {
+function findOrMapIdentifier(
+  name: string,
+  mapping: { [k: string]: string }
+): string {
   if (mapping[name]) {
     return mapping[name]
   }
@@ -59,7 +62,9 @@ function findOrMapIdentifier(name: string, mapping: { [k: string]: string }) {
   return mapping[name]
 }
 
-function inverseMapping(mapping: { [k: string]: string }) {
+function inverseMapping(mapping: {
+  [k: string]: string
+}): { [k: string]: string } {
   return Object.keys(mapping).reduce(
     (result, original) => {
       const mapped = mapping[original]

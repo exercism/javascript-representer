@@ -50,7 +50,10 @@ describe('FileOutput', () => {
         }),
         OUT_OPTIONS
       )
-      expect(processed).toStrictEqual(CONTENTS)
+      expect(processed).toStrictEqual({
+        representation: CONTENTS,
+        mapping: MAPPING,
+      })
     })
 
     it('writes the processable stream to disk', async () => {
@@ -131,7 +134,6 @@ describe('FileOutput', () => {
       expect(files).toMatchObject({
         [path.normalize(path.dirname(OUT_OPTIONS.output.representation))]: {
           [outFile]: CONTENTS,
-          [OUT_OPTIONS.output.mapping]: MAPPING,
         },
       })
 

@@ -51,6 +51,6 @@ describe('LogOutput', () => {
       Promise.resolve({ representation: CONTENTS, mapping: MAPPING }),
       DEFAULT_OPTIONS
     )
-    expect(result).toBe({ representation: CONTENTS, mapping: MAPPING })
+    expect(result).toStrictEqual({ representation: CONTENTS, mapping: MAPPING })
   })
 })
