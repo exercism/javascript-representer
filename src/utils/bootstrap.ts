@@ -1,14 +1,14 @@
-import { registerExceptionHandler } from '~src/errors/handler';
-import { ExerciseImpl } from '~src/ExerciseImpl';
-import { DirectoryInput } from '~src/input/DirectoryInput';
-import { Logger, setProcessLogger as setGlobalLogger } from '~src/utils/logger';
-import { ExecutionOptionsImpl } from './execution_options';
+import { registerExceptionHandler } from '~src/errors/handler'
+import { ExerciseImpl } from '~src/ExerciseImpl'
+import { DirectoryInput } from '~src/input/DirectoryInput'
+import { Logger, setProcessLogger as setGlobalLogger } from '~src/utils/logger'
+import { ExecutionOptionsImpl } from './execution_options'
 
 export interface BootstrapResult {
-  exercise: Exercise;
-  input: DirectoryInput;
-  options: ExecutionOptions;
-  logger: Logger;
+  exercise: Exercise
+  input: DirectoryInput
+  options: ExecutionOptions
+  logger: Logger
 }
 
 /**
@@ -23,23 +23,20 @@ export interface BootstrapResult {
  * console logging.
  */
 export class Bootstrap {
-
   /**
    * Builds execution options, exercise and input based on the process arguments
    *
    */
   public static call(): BootstrapResult {
-
     registerExceptionHandler()
 
-    const options   = ExecutionOptionsImpl.create()
-    const logger    = new Logger(options)
-    const exercise  = new ExerciseImpl(options.exercise)
-    const input     = new DirectoryInput(options.inputDir, exercise.slug)
+    const options = ExecutionOptionsImpl.create()
+    const logger = new Logger(options)
+    const exercise = new ExerciseImpl(options.exercise)
+    const input = new DirectoryInput(options.inputDir, exercise.slug)
 
     setGlobalLogger(logger)
 
     return { exercise, input, options, logger }
   }
 }
-

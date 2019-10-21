@@ -8,8 +8,8 @@ import { run } from '~src/utils/runner'
 //
 // represent -dc two-fer ~/test/
 //
-// For example, if arguments are passed directly, the above will run the 
-// representer looking for two-fer input with the ~/test/ input directory and 
+// For example, if arguments are passed directly, the above will run the
+// representer looking for two-fer input with the ~/test/ input directory and
 // turning on debug and console logging.
 //
 const { exercise, options, input, logger } = Bootstrap.call()
@@ -30,4 +30,3 @@ const representer = new RepresenterImpl()
 run(representer, input, options)
   .then((): never => process.exit(0))
   .catch((err): never => logger.fatal(err.toString()))
-

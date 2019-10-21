@@ -1,7 +1,10 @@
 import { getProcessLogger } from '~src/utils/logger'
 
-export const LogOutput: OutputProcessor = async (previous: Promise<string>): Promise<string> => {
+export const LogOutput: OutputProcessor = async (previous) => {
   const output = await previous
-  getProcessLogger().log(`=> output: \n\n${output}\n`)
+
+  const logger = getProcessLogger()
+  logger.log(`=> representation: \n\n${output.representation}\n`)
+  logger.log(`=> mapping: \n\n${output.mapping}\n`)
   return output
 }

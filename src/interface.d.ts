@@ -1,22 +1,22 @@
 interface ExecutionOptions {
   /** If true, logger.debug messages are displayed */
-  debug: boolean;
+  debug: boolean
   /** If true, logger messages are sent to the console */
-  console: boolean;
+  console: boolean
   /** If true, does a dry run and does not output anything to file */
-  dry: boolean;
+  dry: boolean
   /** The output file name */
-  output: string;
+  output: { representation: string; mapping: string; stdout?: string }
   /** The input directory path */
-  inputDir: string;
+  inputDir: string
   /** The output directory path */
-  outputDir: string;
+  outputDir: string
   /** The exercise slug */
-  exercise: string;
+  exercise: string
   /** Unless true, expects website-copy to provide the contents of the templates */
-  noTemplates: boolean;
+  noTemplates: boolean
   /** If true, outputs the JSON using 2 space-indentation (pretty-print) */
-  pretty: boolean;
+  pretty: boolean
 }
 
 interface AstParser<T extends object> {
@@ -25,7 +25,7 @@ interface AstParser<T extends object> {
    * @param input the input
    * @returns the AST
    */
-  parse(input: Input): Promise<T>;
+  parse(input: Input): Promise<T>
 }
 
 interface Input {
@@ -34,12 +34,11 @@ interface Input {
    * @param n the number
    * @returns at most `n` strings
    */
-  read(n?: number): Promise<string[]>;
+  read(n?: number): Promise<string[]>
 }
 
-
 interface Exercise {
-  readonly slug: string;
+  readonly slug: string
 }
 
 interface Output {
@@ -48,17 +47,26 @@ interface Output {
    * @param options the execution options
    * @returns the output as string
    */
-  toProcessable(options: Readonly<ExecutionOptions>): Promise<string>;
+  toProcessable(
+    options: Readonly<ExecutionOptions>
+  ): Promise<{ representation: string; mapping: string }>
 }
 
 interface OutputProcessor {
-  (previous: Promise<string>, options: Readonly<ExecutionOptions>): Promise<string>;
+  (
+    previous: Promise<Readonly<{ representation: string; mapping: string }>>,
+    options: Readonly<ExecutionOptions>
+  ): Promise<{ representation: string; mapping: string }>
 }
 
 interface Representer {
-  run(input: Input): Promise<Output>;
+  run(input: Input): Promise<Output>
 }
 
 interface Runner {
-  call(representer: Representer, input: Input, options: Readonly<ExecutionOptions>): Promise<Output>;
+  call(
+    representer: Representer,
+    input: Input,
+    options: Readonly<ExecutionOptions>
+  ): Promise<Output>
 }

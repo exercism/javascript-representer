@@ -3,7 +3,7 @@ import yargs from 'yargs'
 export class ExecutionOptionsImpl implements ExecutionOptions {
   public debug!: boolean
   public console!: boolean
-  public output!: string
+  public output!: { representation: string; mapping: string }
   public inputDir!: string
   public outputDir!: string
   public exercise!: string
@@ -12,40 +12,60 @@ export class ExecutionOptionsImpl implements ExecutionOptions {
   public pretty!: boolean
 
   constructor(options: ExecutionOptions) {
-    Object.assign(this, options);
+    Object.assign(this, options)
   }
 
   public static create(): ExecutionOptions {
     const args = yargs
-      .usage('Usage: $0 <exercise> <input-directory> [<output-directory>] [options]')
-      .example('$0 two-fer ~/javascript/two-fer/128/', 'Represent the two-fer solution from the input directory "128"')
+      .usage(
+        'Usage: $0 <exercise> <input-directory> [<output-directory>] [options]'
+      )
+      .example(
+        '$0 two-fer ~/javascript/two-fer/128/',
+        'Represent the two-fer solution from the input directory "128"'
+      )
       .alias('d', 'debug')
       .alias('c', 'console')
-      .alias('o', 'output')
+      .alias('or', 'output_representation')
+      .alias('om', 'output_mapping')
       .alias('p', 'pretty')
       .describe('d', 'Unless given, only outputs warnings and errors')
       .describe('c', 'If given, outputs to the console')
-      .describe('o', 'Path relative to the input dir where the analyzis results are stored')
-      .describe('noTemplates', 'Unless given, exports templates instead of messages (feature flag)')
-      .describe('p', 'If given, formats the JSON output using 2 space indentation')
+      .describe(
+        'or',
+        'Path relative to the output dir where the representation is stored'
+      )
+      .describe(
+        'om',
+        'Path relative to the output dir where the mapping is stored'
+      )
+      .describe(
+        'noTemplates',
+        'Unless given, exports templates instead of messages (feature flag)'
+      )
+      .describe(
+        'p',
+        'If given, formats the JSON output using 2 space indentation'
+      )
       .describe('dry', 'If given, does not output anything to disk')
       .boolean(['d', 'c', 'p', 'dry', 'noTemplates'])
-      .string('o')
+      .string('or')
+      .string('om')
       .default('d', process.env.NODE_ENV === 'development')
       .default('c', process.env.NODE_ENV === 'development')
       .default('noTemplates', false)
       .default('p', false)
-      .default('o', './representation.txt')
+      .default('or', './representation.txt')
+      .default('om', './mapping.json')
       .default('dry', false)
       .help('h')
-      .alias('h', 'help')
-      .argv
+      .alias('h', 'help').argv
 
-    const { d, c, o, dry, p, noTemplates, _ } = args
+    const { d, c, or, om, dry, p, noTemplates, _ } = args
     return new ExecutionOptionsImpl({
       debug: d,
       console: c,
-      output: o,
+      output: { representation: or, mapping: om },
       pretty: p,
       dry,
       noTemplates,

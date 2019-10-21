@@ -32,9 +32,9 @@ function noop(_: LoggerInput): void {
 }
 
 export interface Logger {
-  error: typeof error;
-  fatal: typeof fatal;
-  log: typeof log;
+  error: typeof error
+  fatal: typeof fatal
+  log: typeof log
 }
 
 export class Logger {
@@ -57,7 +57,7 @@ const LIVE_BINDING: { current: Logger | null } = { current: NOOP_LOGGER }
  * @returns the global logger
  */
 export function setProcessLogger(logger: Readonly<Logger>): Readonly<Logger> {
-  return LIVE_BINDING.current = logger
+  return (LIVE_BINDING.current = logger)
 }
 
 /**
