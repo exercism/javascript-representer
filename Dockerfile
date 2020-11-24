@@ -26,4 +26,4 @@ COPY --from=builder /javascript-representer/dist /opt/representer/dist
 COPY --from=builder /javascript-representer/production_node_modules /opt/representer/node_modules
 USER appuser
 WORKDIR /opt/representer
-ENTRYPOINT ["/opt/representer/bin/generate.sh"]
+ENTRYPOINT ["/opt/representer/bin/run.sh"]
