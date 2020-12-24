@@ -1,4 +1,4 @@
-import { InlineInput } from "~test/helpers/input/InlineInput";
+import { InlineInput } from '~test/helpers/input/InlineInput'
 
 type RepresenterFactory = () => Representer
 type represent = (solutionContent: string) => Promise<Output>

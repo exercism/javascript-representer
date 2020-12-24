@@ -3,7 +3,7 @@ name: Deploy to Amazon ECR
 env:
   aws_region: eu-west-2
   ecr_repository: ${{ github.event.repository.name }}
-  dockerfile: "Dockerfile"
+  dockerfile: 'Dockerfile'
 
 on:
   push:
@@ -47,13 +47,13 @@ jobs:
         env:
           ECR_REGISTRY: ${{ steps.login_to_ecr.outputs.registry }}
           ECR_REPOSITORY: ${{ env.ecr_repository }}
-          IMAGE_TAG: "${{ github.sha }}"
+          IMAGE_TAG: '${{ github.sha }}'
           DOCKERFILE: ${{ env.dockerfile }}
         run: |
           # Build a docker container and push it to ECR
           docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f $DOCKERFILE .
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
-          
+
           # Retag this as the production tag to deploy it
           docker tag $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG $ECR_REGISTRY/$ECR_REPOSITORY:production
           docker push $ECR_REGISTRY/$ECR_REPOSITORY:production

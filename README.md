@@ -71,7 +71,7 @@ You can pass the following type of URLs:
 - Your solutions: `/my/solutions/<id>`
 - Private solutions: `/solutions/<id>`
 
-### Using docker
+## Using docker
 
 To create the image, execute the following command from the repository root:
 
@@ -89,4 +89,19 @@ Example:
 
 ```bash
 docker run -v ~/solution-238382y7sds7fsadfasj23j:/solution exercism/javascript-representer two-fer /solution
+```
+
+## Formatting code
+
+The easiest way to satisfy the code-format linter is to add a comment to your PR:
+
+```text
+/format
+```
+
+Alternatively, run the following command:
+
+```shell
+# Ensure that the version matches the version inside .github/format-code.yml
+EXERCISM_PRETTIER_VERSION=2.2.1 bin/format.sh
 ```

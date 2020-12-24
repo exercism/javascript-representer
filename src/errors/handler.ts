@@ -1,14 +1,22 @@
-import { GENERIC_FAILURE } from "./codes";
+import { GENERIC_FAILURE } from './codes'
 
 export function registerExceptionHandler(): void {
   process.on('uncaughtException', reportException)
 }
 
-function reportException<T extends Error & { message: string; code?: number }>(err: T): void
-function reportException<T extends Error & { message: string; code?: number }>(err: T | string): void {
-
+function reportException<T extends Error & { message: string; code?: number }>(
+  err: T
+): void
+function reportException<T extends Error & { message: string; code?: number }>(
+  err: T | string
+): void {
   if (typeof err === 'string') {
-    return reportException({ message: err, code: GENERIC_FAILURE, stack: undefined, name: 'UnknownError' })
+    return reportException({
+      message: err,
+      code: GENERIC_FAILURE,
+      stack: undefined,
+      name: 'UnknownError',
+    })
   }
 
   const errorMessage = `
