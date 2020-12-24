@@ -15,7 +15,7 @@ const DEFAULT_OPTIONS: ExecutionOptions = {
   dry: false,
   console: true,
   noTemplates: false,
-  pretty: false,
+  pretty: true,
   exercise: '<no-exercise>',
   output: { representation: '<no-output>', mapping: '<no-output>' },
   inputDir: '<no-input>',

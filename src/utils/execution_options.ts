@@ -8,7 +8,6 @@ export class ExecutionOptionsImpl implements ExecutionOptions {
   public outputDir!: string
   public exercise!: string
   public dry!: boolean
-  public noTemplates!: boolean
   public pretty!: boolean
 
   constructor(options: ExecutionOptions) {
@@ -53,7 +52,6 @@ export class ExecutionOptionsImpl implements ExecutionOptions {
       .string('om')
       .default('d', process.env.NODE_ENV === 'development')
       .default('c', process.env.NODE_ENV === 'development')
-      .default('noTemplates', false)
       .default('p', true)
       .default('u', false)
       .default('or', './representation.txt')
@@ -62,7 +60,7 @@ export class ExecutionOptionsImpl implements ExecutionOptions {
       .help('h')
       .alias('h', 'help').argv
 
-    const { d, c, or, om, dry, p, u, noTemplates, _ } = args
+    const { d, c, or, om, dry, p, u, _ } = args
 
     return new ExecutionOptionsImpl({
       debug: d,
@@ -70,7 +68,6 @@ export class ExecutionOptionsImpl implements ExecutionOptions {
       output: { representation: or, mapping: om },
       pretty: u === true ? false : p,
       dry,
-      noTemplates,
       exercise: String(_[0]),
       inputDir: String(_[1]),
       outputDir: String(_[2] || _[1]),

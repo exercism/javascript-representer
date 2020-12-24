@@ -13,13 +13,11 @@ interface ExecutionOptions {
   outputDir: string
   /** The exercise slug */
   exercise: string
-  /** Unless true, expects website-copy to provide the contents of the templates */
-  noTemplates: boolean
   /** If true, outputs the JSON using 2 space-indentation (pretty-print) */
   pretty: boolean
 }
 
-interface AstParser<T extends object> {
+interface AstParser<T extends unknown> {
   /**
    * Parse an input to an Abstract Syntax Tree
    * @param input the input

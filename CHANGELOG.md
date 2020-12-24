@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.0.0
+
+- Add deploy to dockerhub
+- Add build and run tests on commit
+- Add build and run tests on pr
+- Add format action workflow
+- Add third argument in binary usage
+- Add aliases of various binaries
+- Add ugly flag (to be used instead of pretty flag)
+- Change default printing to pretty
+- Update traversal of AST to use @typescript-estree
+- Update dependencies
+
 ## 0.2.0
 
 - Add `mapping` output
