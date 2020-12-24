@@ -1,4 +1,4 @@
-name: javascript / format
+name: javascript-representer / format
 
 on:
   push:
