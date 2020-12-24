@@ -1,4 +1,4 @@
-name: Push to DockerHub
+name: javascript-representer / deploy / dockerhub
 
 on:
   push:
