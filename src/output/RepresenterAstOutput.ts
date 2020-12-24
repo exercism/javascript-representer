@@ -1,10 +1,11 @@
+import type { TSESTree } from '@typescript-eslint/typescript-estree'
 import {
-  Program,
-  Node,
-} from '@typescript-eslint/typescript-estree/dist/ts-estree/ts-estree'
-import { traverse } from 'eslint/lib/shared/traverser'
-import { visitorKeys } from '@typescript-eslint/parser/dist/visitor-keys'
-import { AST_NODE_TYPES } from '@typescript-eslint/typescript-estree'
+  simpleTraverse,
+  AST_NODE_TYPES,
+} from '@typescript-eslint/typescript-estree'
+
+type Program = TSESTree.Program
+type Node = TSESTree.Node
 
 export class RepresenterAstOutput implements Output {
   constructor(public readonly representation: Program) {}
@@ -31,8 +32,7 @@ function normaliseRepresentation(
 ): { representation: Program; mapping: { [k: string]: string } } {
   const mapping: { [k: string]: string } = {}
 
-  traverse(representation, {
-    // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+  simpleTraverse(representation, {
     enter(node: Node) {
       switch (node.type) {
         case AST_NODE_TYPES.Identifier: {
@@ -40,8 +40,6 @@ function normaliseRepresentation(
         }
       }
     },
-
-    visitorKeys,
   })
 
   return {
@@ -65,12 +63,9 @@ function findOrMapIdentifier(
 function inverseMapping(mapping: {
   [k: string]: string
 }): { [k: string]: string } {
-  return Object.keys(mapping).reduce(
-    (result, original) => {
-      const mapped = mapping[original]
-      result[mapped] = original
-      return result
-    },
-    {} as { [k: string]: string }
-  )
+  return Object.keys(mapping).reduce((result, original) => {
+    const mapped = mapping[original]
+    result[mapped] = original
+    return result
+  }, {} as { [k: string]: string })
 }

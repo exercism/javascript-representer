@@ -1,19 +1,28 @@
-import { ExecutionOptionsImpl } from "~src/utils/execution_options";
-import { ExerciseImpl } from "~src/ExerciseImpl";
-import { BootstrapResult } from "~src/utils/bootstrap";
-import { setProcessLogger, Logger } from "~src/utils/logger";
+import { ExecutionOptionsImpl } from '~src/utils/execution_options'
+import { ExerciseImpl } from '~src/ExerciseImpl'
+import { BootstrapResult } from '~src/utils/bootstrap'
+import { setProcessLogger, Logger } from '~src/utils/logger'
 
-export function bootstrap({ exercise, ...overrides }: { exercise: string } & Partial<ExecutionOptions>): Omit<BootstrapResult, 'input'> {
+export function bootstrap({
+  exercise,
+  ...overrides
+}: { exercise: string } & Partial<ExecutionOptions>): Omit<
+  BootstrapResult,
+  'input'
+> {
   const options = new ExecutionOptionsImpl({
     debug: false,
     console: false,
-    output: '__fake__',
+    output: {
+      representation: '__fake__.representation',
+      mapping: '__fake__.mapping',
+    },
+    outputDir: '__fake__',
     inputDir: '__fake__',
     dry: true,
-    noTemplates: false,
-    pretty: false,
+    pretty: true,
     exercise,
-    ...overrides
+    ...overrides,
   })
 
   const logger = setProcessLogger(new Logger(options))
@@ -21,6 +30,6 @@ export function bootstrap({ exercise, ...overrides }: { exercise: string } & Par
   return {
     options,
     exercise: new ExerciseImpl(exercise),
-    logger
+    logger,
   }
 }

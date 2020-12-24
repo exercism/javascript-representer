@@ -26,7 +26,7 @@ const DEFAULT_OPTIONS: Omit<
   console: false,
   exercise: '<no-exercise>',
   noTemplates: false,
-  pretty: false,
+  pretty: true,
 }
 
 describe('FileOutput', () => {

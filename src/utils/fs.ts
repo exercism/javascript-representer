@@ -28,13 +28,16 @@ export async function readDir(dirPath: string): Promise<string[]> {
 
 export async function exists(path: string): Promise<boolean> {
   return new Promise<boolean>((resolve): void => {
-    fs.exists(path, (exists): void => {
-      resolve(exists)
+    fs.stat(path, (err, _): void => {
+      resolve(!err)
     })
   })
 }
 
-export async function writeFile<T>(filePath: string, data: T): Promise<T> {
+export async function writeFile<T extends string | NodeJS.ArrayBufferView>(
+  filePath: string,
+  data: T
+): Promise<T> {
   return new Promise((resolve, reject): void => {
     fs.writeFile(filePath, data, (err): void => {
       err ? reject(err) : resolve(data)
