@@ -1,6 +1,6 @@
 {
   "name": "@exercism/javascript-representer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Exercism AST representer for javascript",
   "repository": "https://github.com/exercism/javascript-representer",
   "author": "Derk-Jan Karrenbeld <derk-jan+github@karrenbeld.info>",
