@@ -1,4 +1,4 @@
-name: Deploy to Amazon ECR
+name: javascript-representer / deploy / amazon
 
 env:
   aws_region: eu-west-2
