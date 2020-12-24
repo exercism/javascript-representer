@@ -16,19 +16,60 @@ yarn build
 
 ## Usage
 
-You can run this either via `yarn`:
+If you're developing this, you can run this via `yarn` or the provided shell script.
 
-```
-yarn represent:bat --debug --console two-fer ~/path/to/solution/folder
+- `.sh` enabled systems (UNIX, WSL): `yarn represent:dev`
+- `.bat` fallback (cmd.exe, Git Bash for Windows): `yarn represent:dev:bat`
+
+You'll want these `:dev` variants because it will _build_ the required code (it will transpile from TypeScript to JavaScript, which is necessary to run this in Node environments, unlike Deno environments). When on Windows, if you're using Git Bash for Windows or a similar terminal, the `.sh` files will work, but will open a new window (which closes after execution). The `.bat` scripts will work in the same terminal.
+
+You can also manually build using `yarn` or `yarn build`, and then run the script directly: `./bin/represent.sh arg1 -o2 --option3`.
+
+Run this with the argument `help` to see how to use this:
+
+```shell
+yarn represent:dev:bat
+
+Usage | represent.js <exercise> <input-directory> [<output-directory>] [options]
+
+Options:
+ ... see below
+
+Examples:
+  represent.js two-fer ~/javascript/two-fer/128/
+
+  Represent the two-fer solution from the input directory "~/javascript/two-fer/128"
 ```
 
-Or directly via the provided shell script:
+### Options
 
-```
-./bin/represent.sh --debug --console two-fer ~/path/to/solution/folder
-```
+| short  | long                      | description                                                         |                                              |
+| ------ | ------------------------- | ------------------------------------------------------------------- | -------------------------------------------- |
+|        | `--version`               | Show version number                                                 | `boolean`                                    |
+| `-d`   | `--debug`                 | Unless given, only outputs warnings and errors                      | `boolean` (default: `false`)                 |
+| `-c`   | `--console`               | If given, outputs to the console                                    | `boolean` (default: `false`)                 |
+| `--or` | `--output_representation` | Path relative to the output dir where the representation is stored  | `string` (default: `"./representation.txt"`) |
+| `--om` | `--output_mapping`        | Path relative to the output dir where the mapping is stored         | `string` (default: `"./mapping.json"`)       |
+| `-u`   | `--ugly`                  | If given, does not format the JSON output using 2 space indentation | `boolean` (default: `false`)                 |
+|        | `--dry`                   | If given, does not output anything to disk                          | `boolean` (default: `false`)                 |
+| `-h`   | `--help`                  | Show help                                                           | `boolean`                                    |
 
-Add the `--debug` and `--console` flags to get output in the terminal window.
+When using development, likely you'll want `-dc` to _also_ print the output and debug message to the console. You can use `--dry` to prevent the script from writing to disk.
+When the `<output-directory>` is not given, it default to the given `<input-directory>`
+
+## Remote solutions
+
+There are tools provided to run the representer on remote solutions.
+
+- `.sh` enabled systems (UNIX, WSL): `bin/scripts/remote.sh url`
+- `.bat` fallback (cmd.exe, Git Bash for Windows): `bin\scripts\remote.bat url`
+
+You can pass the following type of URLs:
+
+- Published solutions: `/tracks/javascript/exercises/<slug>/<id>`
+- Mentor solutions: `/mentor/solutions/<id>`
+- Your solutions: `/my/solutions/<id>`
+- Private solutions: `/solutions/<id>`
 
 ### Using docker
 
@@ -49,54 +90,3 @@ Example:
 ```bash
 docker run -v ~/solution-238382y7sds7fsadfasj23j:/solution exercism/javascript-representer two-fer /solution
 ```
-
-## Tools
-
-We use various tools to maintain this repository and this representer. In order
-to contribute to the _code_ of this track, you'll need NodeJS (LTS or higher)
-installed, with some of the [`bin/*`][file-bin] files having extra dependencies,
-as listed in their file-level commentary.
-
-### `represent` (.sh, .bat)
-
-```shell
-./bin/represent.sh two-fer ~/folder/to/solution -dcp
-```
-
-This runs the representer using `two-fer` as exercise and a path to a solution.
-Most scripts, including this one, accept a wide range of flags to change or
-enhance the behaviour, as coded in [`execution_options.ts`][file-execution-options].
-
-Run with the `-h` / `--help` flag to get a list of flags and their description.
-
-```shell
-./bin/representer.sh --help
-```
-
-You'll most likely want `-dc` (`--debug`,`--console`) during development, which 
-enables console output (instead of `stdout`/`stderr`) and shows `logger.log` as 
-well as `logger.error` and `logger.fatal`.
-
-### `remote` (.sh, .bat)
-
-```shell
-./bin/remote.sh https://exercism.io/tracks/javascript/exercises/two-fer/solutions/df3bb5d7131c44ea9c62206cc8d6c225 -dcp --dry
-```
-
-You need the [`exercism` cli][cli] in order for this to work. It takes an 
-_exercism solution url_. and downloads it using the `exercism` cli. It then
-runs the analyzer on it. 
-
-You'll most likely want `-dcp --dry` (`--debug`, `--console` and `dry run`) 
-during development, which enables console output (instead of `stdout`/`stderr`), 
-shows `logger.log` as well as `logger.error` and `logger.fatal`, and disables 
-writing the output to `representation.txt`.
-
-You can pass the following type of URLs:
-
-- Published solutions: `/tracks/javascript/exercises/<slug>/<id>`
-- Mentor solutions: `/mentor/solutions/<id>`
-- Your solutions: `/my/solutions/<id>`
-- Private solutions: `/solutions/<id>`
-
-[cli]: https://github.com/exercism/cli
