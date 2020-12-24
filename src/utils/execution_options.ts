@@ -28,7 +28,7 @@ export class ExecutionOptionsImpl implements ExecutionOptions {
       .alias('c', 'console')
       .alias('or', 'output_representation')
       .alias('om', 'output_mapping')
-      .alias('p', 'pretty')
+      .alias('u', 'ugly')
       .describe('d', 'Unless given, only outputs warnings and errors')
       .describe('c', 'If given, outputs to the console')
       .describe(
@@ -44,34 +44,36 @@ export class ExecutionOptionsImpl implements ExecutionOptions {
         'Unless given, exports templates instead of messages (feature flag)'
       )
       .describe(
-        'p',
-        'If given, formats the JSON output using 2 space indentation'
+        'u',
+        'If given, does not format the JSON output using 2 space indentation'
       )
       .describe('dry', 'If given, does not output anything to disk')
-      .boolean(['d', 'c', 'p', 'dry', 'noTemplates'])
+      .boolean(['d', 'c', 'p', 'u', 'dry', 'noTemplates'])
       .string('or')
       .string('om')
       .default('d', process.env.NODE_ENV === 'development')
       .default('c', process.env.NODE_ENV === 'development')
       .default('noTemplates', false)
-      .default('p', false)
+      .default('p', true)
+      .default('u', false)
       .default('or', './representation.txt')
       .default('om', './mapping.json')
       .default('dry', false)
       .help('h')
       .alias('h', 'help').argv
 
-    const { d, c, or, om, dry, p, noTemplates, _ } = args
+    const { d, c, or, om, dry, p, u, noTemplates, _ } = args
+
     return new ExecutionOptionsImpl({
       debug: d,
       console: c,
       output: { representation: or, mapping: om },
-      pretty: p,
+      pretty: u === true ? false : p,
       dry,
       noTemplates,
-      exercise: _[0],
-      inputDir: _[1],
-      outputDir: _[2] || _[1],
+      exercise: String(_[0]),
+      inputDir: String(_[1]),
+      outputDir: String(_[2] || _[1]),
     })
   }
 }
