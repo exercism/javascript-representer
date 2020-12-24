@@ -1,4 +1,4 @@
-import { STRUCTURE_ERROR_UNCAUGHT } from "./codes";
+import { STRUCTURE_ERROR_UNCAUGHT } from './codes'
 
 export class StructureError extends Error {
   public readonly code: typeof STRUCTURE_ERROR_UNCAUGHT

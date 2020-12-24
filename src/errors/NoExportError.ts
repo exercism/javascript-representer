@@ -1,4 +1,4 @@
-import { StructureError } from "./StructureError";
+import { StructureError } from './StructureError'
 
 export class NoExportError extends StructureError {
   constructor(public readonly namedExport: string) {
