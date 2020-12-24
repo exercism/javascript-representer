@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.1
+
+- Resolve merge conflict in `run.sh`
+
 ## 1.0.0
 
 - Add deploy to dockerhub
