@@ -1,5 +1,5 @@
 import { spawnSync } from 'child_process'
-import { lstat, mkdtempSync, readFileSync } from 'fs'
+import { lstat, mkdtempSync, readFileSync, unlink } from 'fs'
 import { tmpdir } from 'os'
 import { join, resolve } from 'path'
 
@@ -11,7 +11,32 @@ const bin = resolve(root, 'bin')
 const run = resolve(bin, 'run.sh')
 
 describe('javascript-representer', () => {
+  describe('capable of running this test suite', () => {
+    test('it has bash', () => {
+      const spawned = spawnSync('which', ['bash'], { stdio: 'pipe' })
+      expect(spawned.status).toBe(0)
+    })
+  })
+
   describe('passing solution', () => {
+    const representationPath = join(
+      fixtures,
+      'two-fer',
+      'pass',
+      'representation.txt'
+    )
+    const mappingPath = join(fixtures, 'two-fer', 'pass', 'mapping.json')
+
+    afterEach(() => {
+      unlink(representationPath, () => {
+        /* noop */
+      })
+
+      unlink(mappingPath, () => {
+        /* noop */
+      })
+    })
+
     test('can represent', () => {
       const spawned = spawnSync(
         'bash',
@@ -37,16 +62,10 @@ describe('javascript-representer', () => {
       })
 
       return new Promise((resolve, reject) => {
-        const resultPath = join(
-          fixtures,
-          'two-fer',
-          'pass',
-          'representation.txt'
-        )
-        lstat(resultPath, (err, _) => {
+        lstat(representationPath, (err, _) => {
           expect(err).toBeNull()
 
-          const result = JSON.parse(readFileSync(resultPath).toString())
+          const result = JSON.parse(readFileSync(representationPath).toString())
 
           expect(result.type).toBe(AST_NODE_TYPES.Program)
           expect(result.body).not.toBeUndefined()
@@ -68,12 +87,11 @@ describe('javascript-representer', () => {
       })
 
       return new Promise((resolve, reject) => {
-        const resultPath = join(fixtures, 'two-fer', 'pass', 'mapping.json')
-        lstat(resultPath, (err, _) => {
+        lstat(mappingPath, (err, _) => {
           expect(err).toBeNull()
 
           const tokens = ['twoFer', 'name']
-          const result = JSON.parse(readFileSync(resultPath).toString())
+          const result = JSON.parse(readFileSync(mappingPath).toString())
 
           expect(typeof result).toBe('object')
           expect(result).not.toBeNull()
@@ -145,6 +163,24 @@ describe('javascript-representer', () => {
   })
 
   describe('failing solution (tests)', () => {
+    const representationPath = join(
+      fixtures,
+      'two-fer',
+      'fail',
+      'representation.txt'
+    )
+    const mappingPath = join(fixtures, 'two-fer', 'fail', 'mapping.json')
+
+    afterEach(() => {
+      unlink(representationPath, () => {
+        /* noop */
+      })
+
+      unlink(mappingPath, () => {
+        /* noop */
+      })
+    })
+
     test('can represent', () => {
       const spawned = spawnSync(
         'bash',
@@ -166,16 +202,10 @@ describe('javascript-representer', () => {
       })
 
       return new Promise((resolve, reject) => {
-        const resultPath = join(
-          fixtures,
-          'two-fer',
-          'fail',
-          'representation.txt'
-        )
-        lstat(resultPath, (err, _) => {
+        lstat(representationPath, (err, _) => {
           expect(err).toBeNull()
 
-          const result = JSON.parse(readFileSync(resultPath).toString())
+          const result = JSON.parse(readFileSync(representationPath).toString())
           expect(result.type).toBe(AST_NODE_TYPES.Program)
           expect(result.body).not.toBeUndefined()
           expect(result.sourceType).toBe('module')
@@ -196,12 +226,11 @@ describe('javascript-representer', () => {
       })
 
       return new Promise((resolve, reject) => {
-        const resultPath = join(fixtures, 'two-fer', 'fail', 'mapping.json')
-        lstat(resultPath, (err, _) => {
+        lstat(mappingPath, (err, _) => {
           expect(err).toBeNull()
 
           const tokens = ['twoFer', 'console', 'debug', 'log', 'n']
-          const result = JSON.parse(readFileSync(resultPath).toString())
+          const result = JSON.parse(readFileSync(mappingPath).toString())
 
           expect(typeof result).toBe('object')
           expect(result).not.toBeNull()
