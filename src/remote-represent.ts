@@ -1,9 +1,12 @@
-import { ExecutionOptionsImpl } from './utils/execution_options'
-import { registerExceptionHandler } from './errors/handler'
-import { Logger, setProcessLogger } from './utils/logger'
-import { spawnSync, spawn } from 'child_process'
+import { registerExceptionHandler } from '@exercism/static-analysis/dist/errors/handler'
+import {
+  Logger,
+  setProcessLogger,
+} from '@exercism/static-analysis/dist/utils/logger'
+import { spawn, spawnSync } from 'child_process'
 import fs from 'fs'
 import path from 'path'
+import { ExecutionOptionsImpl } from './utils/execution_options'
 
 // The calls below uses the arguments passed to the process to figure out
 // which exercise to target, where the input lives (url/solution id) and what

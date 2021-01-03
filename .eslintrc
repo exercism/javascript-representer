@@ -2,13 +2,16 @@
   "root": true,
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
+    "project": "./tsconfig.json",
     "ecmaVersion": 2018,
-    "sourceType": "module"
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "modules": true
+    }
   },
   "env": {
     "es6": true,
-    "node": true,
-    "jest": true
+    "node": true
   },
   "plugins": ["import", "@typescript-eslint"],
   "extends": [
@@ -23,16 +26,14 @@
   ],
   "rules": {
     "@typescript-eslint/explicit-function-return-type": [
-      "warn",
-      {
+      "warn", {
         "allowExpressions": false,
         "allowTypedFunctionExpressions": true,
         "allowHigherOrderFunctions": true
       }
     ],
     "@typescript-eslint/explicit-member-accessibility": [
-      "warn",
-      {
+      "warn", {
         "accessibility": "no-public",
         "overrides": {
           "accessors": "explicit",
@@ -43,30 +44,18 @@
         }
       }
     ],
-    "@typescript-eslint/no-inferrable-types": [
-      "error",
-      {
-        "ignoreParameters": true
-      }
-    ],
     "@typescript-eslint/no-non-null-assertion": "off",
     "@typescript-eslint/no-parameter-properties": [
-      "warn",
-      {
+      "warn", {
         "allows": [
-          "private",
-          "protected",
-          "public",
-          "private readonly",
-          "protected readonly",
-          "public readonly"
+          "private", "protected", "public",
+          "private readonly", "protected readonly", "public readonly"
         ]
       }
     ],
     "@typescript-eslint/no-unused-vars": "off",
     "@typescript-eslint/no-use-before-define": [
-      "error",
-      {
+      "error", {
         "functions": false,
         "typedefs": false
       }

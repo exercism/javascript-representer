@@ -1,4 +1,5 @@
-import { InlineInput } from '~test/helpers/input/InlineInput'
+import { InlineInput } from '@exercism/static-analysis/dist/input/InlineInput'
+import type { Output, Representer } from '~src/interface'
 
 type RepresenterFactory = () => Representer
 type represent = (solutionContent: string) => Promise<Output>

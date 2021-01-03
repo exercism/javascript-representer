@@ -2,10 +2,8 @@
   "composite": true,
   "extends": "../tsconfig.json",
   "compilerOptions": {
-    "baseUrl": "./",
     "paths": {
-      "~src/*": ["../src/*"],
-      "~test/*": ["./*"]
+      "~src/*": ["../src/*"]
     },
     "noEmit": true
   },

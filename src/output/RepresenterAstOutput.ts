@@ -1,8 +1,9 @@
 import type { TSESTree } from '@typescript-eslint/typescript-estree'
 import {
-  simpleTraverse,
   AST_NODE_TYPES,
+  simpleTraverse,
 } from '@typescript-eslint/typescript-estree'
+import type { ExecutionOptions, Output } from '../interface'
 
 type Program = TSESTree.Program
 type Node = TSESTree.Node

@@ -906,6 +906,11 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
+"@exercism/static-analysis@^0.2.0":
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/@exercism/static-analysis/-/static-analysis-0.2.0.tgz#c876d1a556cd34a5b8d51cb46c21408af0c84d34"
+  integrity sha512-rqWeJk6ezIHf/2aORW0tt5cZ1wAvocV9MULwgcYnSLUn/baIA4aggYDJ63WIQsfO4Q37wfQgWA1gVhIFLGk5wQ==
+
 "@istanbuljs/load-nyc-config@^1.0.0":
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/@istanbuljs/load-nyc-config/-/load-nyc-config-1.1.0.tgz#fd3db1d59ecf7cf121e80650bb86712f9b55eced"
@@ -1127,6 +1132,11 @@
   integrity sha512-MZPUxrmFubI36XS1DI3qmI0YdN1gks62JtFZvxR67ljjSNCeK6U08Zx4msEWOXuofgqUt6zPHSi1H9fbjR/NRA==
   dependencies:
     "@sinonjs/commons" "^1.7.0"
+
+"@tsconfig/recommended@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@tsconfig/recommended/-/recommended-1.0.1.tgz#7619bad397e06ead1c5182926c944e0ca6177f52"
+  integrity sha512-2xN+iGTbPBEzGSnVp/Hd64vKJCJWxsi9gfs88x4PPMyEjHJoA3o5BY9r5OLPHIZU2pAQxkSAsJFqn6itClP8mQ==
 
 "@types/babel__core@^7.0.0", "@types/babel__core@^7.1.7":
   version "7.1.12"

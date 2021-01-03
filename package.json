@@ -27,6 +27,7 @@
     "@babel/node": "7.12.10",
     "@babel/preset-env": "^7.12.11",
     "@babel/preset-typescript": "^7.12.7",
+    "@tsconfig/recommended": "^1.0.1",
     "@types/jest": "^26.0.19",
     "@types/node": "^14.14.16",
     "@types/yargs": "^15.0.12",
@@ -39,6 +40,7 @@
     "jest": "^26.6.3"
   },
   "dependencies": {
+    "@exercism/static-analysis": "^0.2.0",
     "@typescript-eslint/parser": "^4.11.0",
     "@typescript-eslint/typescript-estree": "^4.11.0",
     "esm": "^3.2.25",

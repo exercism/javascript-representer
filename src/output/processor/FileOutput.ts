@@ -1,7 +1,7 @@
-import { writeFile } from '~src/utils/fs'
+import { writeFile } from '@exercism/static-analysis/dist/utils/fs'
+import { getProcessLogger } from '@exercism/static-analysis/dist/utils/logger'
 import path from 'path'
-
-import { getProcessLogger } from '~src/utils/logger'
+import type { ExecutionOptions, OutputProcessor } from '../../interface'
 
 type FileOutputOptions = Pick<ExecutionOptions, 'output' | 'outputDir'>
 
@@ -19,8 +19,11 @@ export const FileOutput: OutputProcessor = async (
   logger.log(`=> writing representation to ${outputRepresentation}`)
   logger.log(`=> writing mapping to ${outputMapping}`)
 
-  const writeRepresentation = writeFile(outputRepresentation, representation)
-  const writeMapping = writeFile(outputMapping, mapping)
+  const writeRepresentation = writeFile(
+    outputRepresentation,
+    representation
+  ).then(() => representation)
+  const writeMapping = writeFile(outputMapping, mapping).then(() => mapping)
 
   return {
     representation: await writeRepresentation,
