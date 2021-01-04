@@ -1,5 +1,5 @@
 import yargs from 'yargs'
-import { ExecutionOptions } from '../interface'
+import type { ExecutionOptions } from '../interface'
 
 export class ExecutionOptionsImpl implements ExecutionOptions {
   public debug!: boolean

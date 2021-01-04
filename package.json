@@ -7,9 +7,12 @@
   "license": "MIT",
   "directories": {
     "lib": "./dist",
-    "bin": "./bin",
     "doc": "./docs",
     "test": "./test"
+  },
+  "bin": {
+    "javascript-representer": "bin/run.sh",
+    "javascript-representer-remote": "bin/remote.sh"
   },
   "scripts": {
     "represent": "./bin/represent.sh",
@@ -17,10 +20,12 @@
     "represent:help": "yarn represent help",
     "represent:dev": "yarn build && yarn represent",
     "represent:dev:bat": "yarn build && yarn represent:bat",
+    "prepare": "yarn build",
     "build": "yarn tsc --build src",
-    "prepublish": "yarn test",
+    "prepublishOnly": "yarn test:bare && yarn lint",
     "lint": "yarn eslint . --ext ts,js,tsx,jsx,mjs",
-    "test": "yarn build && jest"
+    "test": "yarn build && yarn test:bare",
+    "test:bare": "jest"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",
