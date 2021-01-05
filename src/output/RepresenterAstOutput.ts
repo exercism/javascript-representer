@@ -1,8 +1,9 @@
 import type { TSESTree } from '@typescript-eslint/typescript-estree'
 import {
-  simpleTraverse,
   AST_NODE_TYPES,
+  simpleTraverse,
 } from '@typescript-eslint/typescript-estree'
+import type { ExecutionOptions, Output } from '../interface'
 
 type Program = TSESTree.Program
 type Node = TSESTree.Node
@@ -15,19 +16,19 @@ export class RepresenterAstOutput implements Output {
   ): Promise<{ representation: string; mapping: string }> {
     const spaces = options && options.pretty ? 2 : 0
 
-    const normalised = normaliseRepresentation(this.representation)
+    const normalized = normalizeRepresentation(this.representation)
     const representation = JSON.stringify(
-      normalised.representation,
+      normalized.representation,
       undefined,
       spaces
     )
-    const mapping = JSON.stringify(normalised.mapping, undefined, spaces)
+    const mapping = JSON.stringify(normalized.mapping, undefined, spaces)
 
     return Promise.resolve({ representation, mapping })
   }
 }
 
-function normaliseRepresentation(
+function normalizeRepresentation(
   representation: Readonly<Program>
 ): { representation: Program; mapping: { [k: string]: string } } {
   const mapping: { [k: string]: string } = {}

@@ -1,4 +1,6 @@
-interface ExecutionOptions {
+import type { Input } from '@exercism/static-analysis/dist/input/Input'
+
+export interface ExecutionOptions {
   /** If true, logger.debug messages are displayed */
   debug: boolean
   /** If true, logger messages are sent to the console */
@@ -17,29 +19,11 @@ interface ExecutionOptions {
   pretty: boolean
 }
 
-interface AstParser<T extends unknown> {
-  /**
-   * Parse an input to an Abstract Syntax Tree
-   * @param input the input
-   * @returns the AST
-   */
-  parse(input: Input): Promise<T>
-}
-
-interface Input {
-  /**
-   * Read in a number of strings
-   * @param n the number
-   * @returns at most `n` strings
-   */
-  read(n?: number): Promise<string[]>
-}
-
-interface Exercise {
+export interface Exercise {
   readonly slug: string
 }
 
-interface Output {
+export interface Output {
   /**
    * Makes the output ready to be processed
    * @param options the execution options
@@ -50,18 +34,18 @@ interface Output {
   ): Promise<{ representation: string; mapping: string }>
 }
 
-interface OutputProcessor {
+export interface OutputProcessor {
   (
     previous: Promise<Readonly<{ representation: string; mapping: string }>>,
     options: Readonly<ExecutionOptions>
   ): Promise<{ representation: string; mapping: string }>
 }
 
-interface Representer {
+export interface Representer {
   run(input: Input): Promise<Output>
 }
 
-interface Runner {
+export interface Runner {
   call(
     representer: Representer,
     input: Input,

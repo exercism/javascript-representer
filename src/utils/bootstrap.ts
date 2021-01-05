@@ -1,9 +1,12 @@
-import { registerExceptionHandler } from '~src/errors/handler'
-import { ExerciseImpl } from '~src/ExerciseImpl'
-import { DirectoryInput } from '~src/input/DirectoryInput'
-import { Logger, setProcessLogger as setGlobalLogger } from '~src/utils/logger'
+import { registerExceptionHandler } from '@exercism/static-analysis/dist/errors/handler'
+import { DirectoryInput } from '@exercism/static-analysis/dist/input/DirectoryInput'
+import {
+  Logger,
+  setProcessLogger,
+} from '@exercism/static-analysis/dist/utils/logger'
+import { ExerciseImpl } from '../ExerciseImpl'
+import type { ExecutionOptions, Exercise } from '../interface'
 import { ExecutionOptionsImpl } from './execution_options'
-
 export interface BootstrapResult {
   exercise: Exercise
   input: DirectoryInput
@@ -35,7 +38,7 @@ export class Bootstrap {
     const exercise = new ExerciseImpl(options.exercise)
     const input = new DirectoryInput(options.inputDir, exercise.slug)
 
-    setGlobalLogger(logger)
+    setProcessLogger(logger)
 
     return { exercise, input, options, logger }
   }

@@ -1,7 +1,11 @@
-import { ExecutionOptionsImpl } from '~src/utils/execution_options'
+import {
+  Logger,
+  setProcessLogger,
+} from '@exercism/static-analysis/dist/utils/logger'
 import { ExerciseImpl } from '~src/ExerciseImpl'
+import { ExecutionOptions } from '~src/interface'
 import { BootstrapResult } from '~src/utils/bootstrap'
-import { setProcessLogger, Logger } from '~src/utils/logger'
+import { ExecutionOptionsImpl } from '~src/utils/execution_options'
 
 export function bootstrap({
   exercise,

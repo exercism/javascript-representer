@@ -1,4 +1,4 @@
-# exercism-javascript-representer
+# @exercism/javascript-representer
 
 ## Installation
 
@@ -13,6 +13,17 @@ You'll need at least Node LTS for this to work.
 ```
 yarn build
 ```
+
+## Global installation
+
+If you want to use this package as a local tool, you can install it globally, in order to make the "binaries" available:
+
+```shellscript
+yarn global add @exercism/javascript-representer
+```
+
+On \*nix systems or enabled shells (wsl, bash, git bash, etc.) you can now use `javascript-representer <slug> <input> [<output>] [-flag] [--flags]` to represent a local file (at `input`), or
+`javascript-representer-remote https://exercism.io/... [<output>] [-flag] [--flags]` to work on a remote solution.
 
 ## Usage
 

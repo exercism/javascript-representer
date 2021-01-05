@@ -1,5 +1,12 @@
-import { LogOutput } from '../output/processor/LogOutput'
+import { Input } from '@exercism/static-analysis/dist/input/Input'
+import type {
+  ExecutionOptions,
+  Output,
+  OutputProcessor,
+  Representer,
+} from '../interface'
 import { FileOutput } from '../output/processor/FileOutput'
+import { LogOutput } from '../output/processor/LogOutput'
 import { PassThroughOutput } from '../output/processor/PassThroughOutput'
 
 /**

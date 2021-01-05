@@ -4,7 +4,6 @@ module.exports = {
   roots: ['<rootDir>/src/', '<rootDir>/test/'],
   moduleNameMapper: {
     '^~src/(.*)$': '<rootDir>/src/$1',
-    '^~test/(.*)$': '<rootDir>/test/$1',
   },
   testMatch: [
     '**/__tests__/**/*.[jt]s?(x)',

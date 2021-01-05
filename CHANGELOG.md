@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.0
+
+- Use [`@exercism/static-analysis`](https://github.com/SleeplessByte/exercism-static-analysis)
+- Add smoke tests
+
 ## 1.0.1
 
 - Resolve merge conflict in `run.sh`

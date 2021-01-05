@@ -1,7 +1,3 @@
-import { Bootstrap } from '~src/utils/bootstrap'
-import { RepresenterImpl } from '~src/representer/RepresenterImpl'
-import { run } from '~src/utils/runner'
-
 // The bootstrap call uses the arguments passed to the process to figure out
 // which exercise to target, where the input lives (directory input) and what
 // execution options to set.
@@ -11,6 +7,11 @@ import { run } from '~src/utils/runner'
 // For example, if arguments are passed directly, the above will run the
 // representer looking for two-fer input with the ~/test/ input directory and
 // turning on debug and console logging.
+
+import { RepresenterImpl } from './representer/RepresenterImpl'
+import { Bootstrap } from './utils/bootstrap'
+import { run } from './utils/runner'
+
 //
 const { exercise, options, input, logger } = Bootstrap.call()
 
