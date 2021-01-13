@@ -119,5 +119,5 @@ representProcess.stdout.on('data', (data) => {
 })
 
 representProcess.on('close', (code) => {
-  process.exit(code)
+  process.exit(code === null ? undefined : code)
 })

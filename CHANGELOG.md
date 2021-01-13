@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.1
+
+- Upgrade dependencies
+
 ## 1.1.0
 
 - Use [`@exercism/static-analysis`](https://github.com/SleeplessByte/exercism-static-analysis)
