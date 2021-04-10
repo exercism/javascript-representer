@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.2.0
+
+- Support `.meta/config.json` for representation input
+
 ## 1.1.1
 
 - Upgrade dependencies

@@ -1,8 +1,8 @@
-import { registerExceptionHandler } from '@exercism/static-analysis/dist/errors/handler'
 import {
   Logger,
+  registerExceptionHandler,
   setProcessLogger,
-} from '@exercism/static-analysis/dist/utils/logger'
+} from '@exercism/static-analysis'
 import { spawn, spawnSync } from 'child_process'
 import fs from 'fs'
 import path from 'path'

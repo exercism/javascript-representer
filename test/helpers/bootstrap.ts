@@ -1,7 +1,4 @@
-import {
-  Logger,
-  setProcessLogger,
-} from '@exercism/static-analysis/dist/utils/logger'
+import { Logger, setProcessLogger } from '@exercism/static-analysis'
 import { ExerciseImpl } from '~src/ExerciseImpl'
 import { ExecutionOptions } from '~src/interface'
 import { BootstrapResult } from '~src/utils/bootstrap'

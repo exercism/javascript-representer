@@ -1,4 +1,4 @@
-import { InlineInput } from '@exercism/static-analysis/dist/input/InlineInput'
+import { InlineInput } from '@exercism/static-analysis'
 import type { Output, Representer } from '~src/interface'
 
 type RepresenterFactory = () => Representer

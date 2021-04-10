@@ -1,5 +1,4 @@
-import { writeFile } from '@exercism/static-analysis/dist/utils/fs'
-import { getProcessLogger } from '@exercism/static-analysis/dist/utils/logger'
+import { getProcessLogger, writeFile } from '@exercism/static-analysis'
 import path from 'path'
 import type { ExecutionOptions, OutputProcessor } from '../../interface'
 

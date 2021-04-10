@@ -1,4 +1,4 @@
-import { getProcessLogger } from '@exercism/static-analysis/dist/utils/logger'
+import { getProcessLogger } from '@exercism/static-analysis'
 import type { OutputProcessor } from '../../interface'
 
 export const LogOutput: OutputProcessor = async (previous) => {

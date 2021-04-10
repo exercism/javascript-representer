@@ -2,7 +2,7 @@ import {
   Logger,
   LoggerInput,
   setProcessLogger,
-} from '@exercism/static-analysis/dist/utils/logger'
+} from '@exercism/static-analysis'
 import type { ExecutionOptions } from '~src/interface'
 import { LogOutput } from '~src/output/processor/LogOutput'
 
