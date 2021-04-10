@@ -1,5 +1,8 @@
 # @exercism/javascript-representer
 
+[![javascript-representer / deploy](https://github.com/exercism/javascript-representer/actions/workflows/deploys.yml/badge.svg)](https://github.com/exercism/javascript-representer/actions/workflows/deploys.yml)
+[![javascript-representer / main](https://github.com/exercism/javascript-representer/actions/workflows/ci.js.yml/badge.svg)](https://github.com/exercism/javascript-representer/actions/workflows/ci.js.yml)
+
 ## Installation
 
 Clone this repository and then run:
@@ -32,14 +35,16 @@ If you're developing this, you can run this via `yarn` or the provided shell scr
 - `.sh` enabled systems (UNIX, WSL): `yarn represent:dev`
 - `.bat` fallback (cmd.exe, Git Bash for Windows): `yarn represent:dev:bat`
 
-You'll want these `:dev` variants because it will _build_ the required code (it will transpile from TypeScript to JavaScript, which is necessary to run this in Node environments, unlike Deno environments). When on Windows, if you're using Git Bash for Windows or a similar terminal, the `.sh` files will work, but will open a new window (which closes after execution). The `.bat` scripts will work in the same terminal.
+You'll want these `:dev` variants because it will _build_ the required code (it will transpile from TypeScript to JavaScript, which is necessary to run this in Node environments, unlike Deno environments).
+When on Windows, if you're using Git Bash for Windows or a similar terminal, the `.sh` files will work, but will open a new window (which closes after execution).
+The `.bat` scripts will work in the same terminal.
 
 You can also manually build using `yarn` or `yarn build`, and then run the script directly: `./bin/represent.sh arg1 -o2 --option3`.
 
 Run this with the argument `help` to see how to use this:
 
 ```shell
-yarn represent:dev:bat
+yarn represent:dev:bat help
 
 Usage | represent.js <exercise> <input-directory> [<output-directory>] [options]
 
@@ -65,7 +70,8 @@ Examples:
 |        | `--dry`                   | If given, does not output anything to disk                          | `boolean` (default: `false`)                 |
 | `-h`   | `--help`                  | Show help                                                           | `boolean`                                    |
 
-When using development, likely you'll want `-dc` to _also_ print the output and debug message to the console. You can use `--dry` to prevent the script from writing to disk.
+When using development, likely you'll want `-dc` to _also_ print the output and debug message to the console.
+You can use `--dry` to prevent the script from writing to disk.
 When the `<output-directory>` is not given, it default to the given `<input-directory>`
 
 ## Remote solutions
