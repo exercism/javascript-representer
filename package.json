@@ -4,7 +4,7 @@
   "description": "Exercism AST representer for javascript",
   "repository": "https://github.com/exercism/javascript-representer",
   "author": "Derk-Jan Karrenbeld <derk-jan+github@karrenbeld.info>",
-  "license": "MIT",
+  "license": "AGPL-3.0-or-later",
   "directories": {
     "lib": "./dist",
     "doc": "./docs",
