@@ -1,4 +1,4 @@
-import { Input } from '@exercism/static-analysis/dist/input/Input'
+import { Input } from '@exercism/static-analysis'
 import type {
   ExecutionOptions,
   Output,

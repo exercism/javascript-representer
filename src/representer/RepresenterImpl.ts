@@ -1,6 +1,4 @@
-import { AstParser } from '@exercism/static-analysis/dist/AstParser'
-import { Input } from '@exercism/static-analysis/dist/input/Input'
-
+import { AstParser, Input } from '@exercism/static-analysis'
 import type { Output, Representer } from '../interface'
 import { RepresenterAstOutput } from '../output/RepresenterAstOutput'
 

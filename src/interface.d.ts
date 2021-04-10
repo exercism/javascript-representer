@@ -1,4 +1,4 @@
-import type { Input } from '@exercism/static-analysis/dist/input/Input'
+import type { Input } from '@exercism/static-analysis'
 
 export interface ExecutionOptions {
   /** If true, logger.debug messages are displayed */

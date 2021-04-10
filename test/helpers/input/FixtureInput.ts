@@ -1,4 +1,4 @@
-import { DirectoryInput } from '@exercism/static-analysis/dist/input/DirectoryInput'
+import { DirectoryInput } from '@exercism/static-analysis'
 import nodePath from 'path'
 
 export class FixtureInput extends DirectoryInput {

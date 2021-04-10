@@ -2,7 +2,7 @@
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "project": "./test/tsconfig.eslint.json",
-    "ecmaVersion": 2018,
+    "ecmaVersion": 2020,
     "sourceType": "module",
     "ecmaFeatures": {
       "modules": true
@@ -13,7 +13,5 @@
     "node": true,
     "jest": true
   },
-  "extends": [
-    "../.eslintrc"
-  ]
+  "extends": ["../.eslintrc"]
 }
