@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.3.0
+
+- Bump dependencies
+- Add `prettier`
+- Use `prettier` from `package.json` in workflows
+
 ## 1.2.0
 
 - Support `.meta/config.json` for representation input

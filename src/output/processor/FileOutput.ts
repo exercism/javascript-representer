@@ -9,10 +9,8 @@ export const FileOutput: OutputProcessor = async (
   options: FileOutputOptions
 ): Promise<{ representation: string; mapping: string }> => {
   const { representation, mapping } = await previous
-  const {
-    representation: outputRepresentation,
-    mapping: outputMapping,
-  } = getOutputPath(options)
+  const { representation: outputRepresentation, mapping: outputMapping } =
+    getOutputPath(options)
 
   const logger = getProcessLogger()
   logger.log(`=> writing representation to ${outputRepresentation}`)

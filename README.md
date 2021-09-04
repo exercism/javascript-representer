@@ -13,7 +13,7 @@ yarn install
 
 You'll need at least Node LTS for this to work.
 
-```
+```bash
 yarn build
 ```
 
@@ -26,7 +26,7 @@ yarn global add @exercism/javascript-representer
 ```
 
 On \*nix systems or enabled shells (wsl, bash, git bash, etc.) you can now use `javascript-representer <slug> <input> [<output>] [-flag] [--flags]` to represent a local file (at `input`), or
-`javascript-representer-remote https://exercism.io/... [<output>] [-flag] [--flags]` to work on a remote solution.
+`javascript-representer-remote https://exercism.org/... [<output>] [-flag] [--flags]` to work on a remote solution.
 
 ## Usage
 
@@ -83,10 +83,11 @@ There are tools provided to run the representer on remote solutions.
 
 You can pass the following type of URLs:
 
-- Published solutions: `/tracks/javascript/exercises/<slug>/<id>`
-- Mentor solutions: `/mentor/solutions/<id>`
-- Your solutions: `/my/solutions/<id>`
-- Private solutions: `/solutions/<id>`
+- ~~Published solutions: `/tracks/javascript/exercises/<slug>/<id>`~~
+- ~~Mentor solutions: `/mentor/solutions/<id>`~~
+- ~~Your solutions: `/my/solutions/<id>`~~
+- ~~Private solutions: `/solutions/<id>`~~
+- Constructed urls: `/solutions/<uid>` (use the download button when mentoring)
 
 ## Using docker
 
@@ -119,6 +120,5 @@ The easiest way to satisfy the code-format linter is to add a comment to your PR
 Alternatively, run the following command:
 
 ```shell
-# Ensure that the version matches the version inside .github/format-code.yml
-EXERCISM_PRETTIER_VERSION=2.2.1 bin/format.sh
+bin/format.sh
 ```

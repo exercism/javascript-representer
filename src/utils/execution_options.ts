@@ -15,7 +15,7 @@ export class ExecutionOptionsImpl implements ExecutionOptions {
     Object.assign(this, options)
   }
 
-  public static create(): ExecutionOptions {
+  public static async create(): Promise<ExecutionOptions> {
     const args = yargs
       .usage(
         'Usage: $0 <exercise> <input-directory> [<output-directory>] [options]'
@@ -61,7 +61,7 @@ export class ExecutionOptionsImpl implements ExecutionOptions {
       .help('h')
       .alias('h', 'help').argv
 
-    const { d, c, or, om, dry, p, u, _ } = args
+    const { d, c, or, om, dry, p, u, _ } = await args
 
     return new ExecutionOptionsImpl({
       debug: d,
