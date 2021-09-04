@@ -32,10 +32,10 @@ export class Bootstrap {
    * Builds execution options, exercise and input based on the process arguments
    *
    */
-  public static call(): BootstrapResult {
+  public static async call(): Promise<BootstrapResult> {
     registerExceptionHandler()
 
-    const options = ExecutionOptionsImpl.create()
+    const options = await ExecutionOptionsImpl.create()
     const logger = new Logger(options)
     const exercise = new ExerciseImpl(options.exercise)
     const input = DirectoryWithConfigInput.test(options.inputDir)

@@ -13,21 +13,28 @@ import { Bootstrap } from './utils/bootstrap'
 import { run } from './utils/runner'
 
 //
-const { exercise, options, input, logger } = Bootstrap.call()
+Bootstrap.call()
+  .then((result) => {
+    const { exercise, options, input, logger } = result
 
-logger.log('=> DEBUG mode is on')
-logger.log(`=> exercise: ${exercise.slug}`)
-logger.log(`=> options: ${options.dry ? 'dry ' : ''}`)
+    logger.log('=> DEBUG mode is on')
+    logger.log(`=> exercise: ${exercise.slug}`)
+    logger.log(`=> options: ${options.dry ? 'dry ' : ''}`)
 
-const representer = new RepresenterImpl()
+    const representer = new RepresenterImpl()
 
-// The runner uses the execution options to determine what should happen with
-// the output. For example the --dry flag will make sure there is nothing
-// written to a file.
-//
-// The basis for the runner is calling analyzer.run(input) -- the output is then
-// logged and/or written to a file.
-//
-run(representer, input, options)
-  .then((): never => process.exit(0))
-  .catch((err): never => logger.fatal(err.toString()))
+    // The runner uses the execution options to determine what should happen with
+    // the output. For example the --dry flag will make sure there is nothing
+    // written to a file.
+    //
+    // The basis for the runner is calling analyzer.run(input) -- the output is then
+    // logged and/or written to a file.
+    //
+    return run(representer, input, options)
+      .then((): never => process.exit(0))
+      .catch((err): never => logger.fatal(err.toString()))
+  })
+  .catch((err): never => {
+    process.stderr.write(err.toString())
+    process.exit(-1)
+  })
