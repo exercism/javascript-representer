@@ -28,9 +28,10 @@ export class RepresenterAstOutput implements Output {
   }
 }
 
-function normalizeRepresentation(
-  representation: Readonly<Program>
-): { representation: Program; mapping: { [k: string]: string } } {
+function normalizeRepresentation(representation: Readonly<Program>): {
+  representation: Program
+  mapping: { [k: string]: string }
+} {
   const mapping: { [k: string]: string } = {}
 
   simpleTraverse(representation, {
@@ -61,9 +62,9 @@ function findOrMapIdentifier(
   return mapping[name]
 }
 
-function inverseMapping(mapping: {
+function inverseMapping(mapping: { [k: string]: string }): {
   [k: string]: string
-}): { [k: string]: string } {
+} {
   return Object.keys(mapping).reduce((result, original) => {
     const mapped = mapping[original]
     result[mapped] = original

@@ -5,7 +5,7 @@ import { FileOutput } from '~src/output/processor/FileOutput'
 
 // jest.mock('fs')
 
-const mockedFs = (fs as unknown) as MockedFs
+const mockedFs = fs as unknown as MockedFs
 
 function mockFiles(files: { [path: string]: string }): void {
   mockedFs.__setMockFiles(files)
@@ -85,10 +85,8 @@ describe.skip('FileOutput', () => {
 
     beforeEach(() => {
       mockFiles({
-        [path.join(
-          OUT_OPTIONS.outputDir,
-          OUT_OPTIONS.output.representation
-        )]: 'Already Written',
+        [path.join(OUT_OPTIONS.outputDir, OUT_OPTIONS.output.representation)]:
+          'Already Written',
       })
     })
 
