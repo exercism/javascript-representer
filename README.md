@@ -1,6 +1,6 @@
 # @exercism/javascript-representer
 
-[![javascript-representer / deploy](https://github.com/exercism/javascript-representer/actions/workflows/deploys.yml/badge.svg)](https://github.com/exercism/javascript-representer/actions/workflows/deploys.yml)
+[![javascript-representer / deploy](https://github.com/exercism/javascript-representer/actions/workflows/deploy.yml/badge.svg)](https://github.com/exercism/javascript-representer/actions/workflows/deploy.yml)
 [![javascript-representer / main](https://github.com/exercism/javascript-representer/actions/workflows/ci.js.yml/badge.svg)](https://github.com/exercism/javascript-representer/actions/workflows/ci.js.yml)
 
 ## Installation
