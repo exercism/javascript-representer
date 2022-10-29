@@ -16,7 +16,7 @@ function normalize(minutes) {
   return minutes % MINUTES_PER_CLOCK
 }
 
-function clockPad(number) {
+export const clockPad = (number) => {
   return String(number).padStart(2, '0')
 }
 
