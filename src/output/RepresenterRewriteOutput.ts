@@ -4,24 +4,24 @@ import {
   simpleTraverse,
 } from '@typescript-eslint/typescript-estree'
 import type { ExecutionOptions, Output } from '../interface'
+import { generate } from 'astring'
+import { getProcessLogger } from '@exercism/static-analysis'
+import { RESERVED_NAMES } from './reserved'
 
 type Program = TSESTree.Program
 type Node = TSESTree.Node
 
-export class RepresenterAstOutput implements Output {
+export class RepresenterRewriteOutput implements Output {
   constructor(public readonly representation: Program) {}
 
   public toProcessable(
     options?: Pick<ExecutionOptions, 'pretty'>
   ): Promise<{ representation: string; mapping: string }> {
     const spaces = options && options.pretty ? 2 : 0
-
+    getProcessLogger().log(JSON.stringify(this.representation, undefined, 2))
     const normalized = normalizeRepresentation(this.representation)
-    const representation = JSON.stringify(
-      normalized.representation,
-      undefined,
-      spaces
-    )
+
+    const representation = generate(normalized.representation, {})
     const mapping = JSON.stringify(normalized.mapping, undefined, spaces)
 
     return Promise.resolve({ representation, mapping })
@@ -38,7 +38,9 @@ function normalizeRepresentation(representation: Readonly<Program>): {
     enter(node: Node) {
       switch (node.type) {
         case AST_NODE_TYPES.Identifier: {
-          node.name = findOrMapIdentifier(node.name, mapping)
+          if (!RESERVED_NAMES.includes(node.name)) {
+            node.name = findOrMapIdentifier(node.name, mapping)
+          }
         }
       }
     },
