@@ -1,0 +1,16 @@
+{
+  "IDENTIFIER_0": "MINUTES_PER_HOUR",
+  "IDENTIFIER_1": "HOURS_ON_THE_CLOCK",
+  "IDENTIFIER_2": "MINUTES_PER_CLOCK",
+  "IDENTIFIER_3": "normalize",
+  "IDENTIFIER_4": "minutes",
+  "IDENTIFIER_5": "console",
+  "IDENTIFIER_6": "log",
+  "IDENTIFIER_8": "number",
+  "IDENTIFIER_9": "padStart",
+  "IDENTIFIER_11": "hours",
+  "IDENTIFIER_12": "plus",
+  "IDENTIFIER_13": "minus",
+  "IDENTIFIER_14": "equals",
+  "IDENTIFIER_15": "other"
+}

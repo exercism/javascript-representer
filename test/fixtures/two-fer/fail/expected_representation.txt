@@ -1,0 +1,6 @@
+export const twoFer = IDENTIFIER_1 => {
+  IDENTIFIER_2.IDENTIFIER_3(IDENTIFIER_1);
+  return `One for you, one for me.`;
+};
+IDENTIFIER_2.IDENTIFIER_3("Hello there debug message");
+IDENTIFIER_2.IDENTIFIER_4("Ok there log message");
