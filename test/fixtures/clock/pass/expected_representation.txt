@@ -1,0 +1,35 @@
+const IDENTIFIER_0 = 60;
+const IDENTIFIER_1 = 24;
+const IDENTIFIER_2 = IDENTIFIER_0 * IDENTIFIER_1;
+function IDENTIFIER_3(IDENTIFIER_4) {
+  while (IDENTIFIER_4 < 0) {
+    IDENTIFIER_5.IDENTIFIER_6("minutes < 0", IDENTIFIER_4);
+    IDENTIFIER_4 += IDENTIFIER_2;
+  }
+  return IDENTIFIER_4 % IDENTIFIER_2;
+}
+export const clockPad = IDENTIFIER_8 => {
+  return String(IDENTIFIER_8).IDENTIFIER_9(2, '0');
+};
+export class Clock {
+  constructor(IDENTIFIER_11, IDENTIFIER_4 = 0) {
+    this.IDENTIFIER_4 = IDENTIFIER_3(IDENTIFIER_11 * IDENTIFIER_0 + IDENTIFIER_4);
+  }
+  toString() {
+    const IDENTIFIER_11 = Math.floor(this.IDENTIFIER_4 / IDENTIFIER_0);
+    const IDENTIFIER_4 = this.IDENTIFIER_4 % IDENTIFIER_0;
+    return `${clockPad(IDENTIFIER_11)}:${clockPad(IDENTIFIER_4)}`;
+  }
+  IDENTIFIER_12(IDENTIFIER_4) {
+    return new Clock(0, this.IDENTIFIER_4 + IDENTIFIER_4);
+  }
+  IDENTIFIER_13(IDENTIFIER_4) {
+    return this.IDENTIFIER_12(-IDENTIFIER_4);
+  }
+  valueOf() {
+    return this.IDENTIFIER_4;
+  }
+  IDENTIFIER_14(IDENTIFIER_15) {
+    return +IDENTIFIER_15 === +this;
+  }
+}

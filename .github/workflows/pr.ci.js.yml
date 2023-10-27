@@ -24,7 +24,7 @@ jobs:
       - name: Lint code
         run: yarn lint
 
-  ci:
+  unit_tests:
     runs-on: ubuntu-latest
 
     strategy:
@@ -42,3 +42,27 @@ jobs:
 
       - name: Install project dependencies and run tests
         run: yarn install --frozen-lockfile
+
+  smoke_tests:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@4c0219f9ac95b02789c1075625400b2acbff50b1
+        with:
+          install: true
+
+      - name: Build Docker image and store in cache
+        uses: docker/build-push-action@2eb1c1961a95fc15694676618e422e8ba1d63825
+        with:
+          context: .
+          push: false
+          load: true
+          tags: exercism/javascript-representer
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Run Tests in Docker
+        run: bin/run-tests-in-docker.sh
