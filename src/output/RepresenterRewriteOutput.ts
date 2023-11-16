@@ -36,7 +36,7 @@ export class RepresenterRewriteOutput implements Output {
       Literal: function (node: LiteralNode, state: State) {
         const { type, value } = node
         const quote = `\``;
-        if (type.startsWith('Lit') && typeof value === 'string') {
+        if (type?.startsWith('Lit') && typeof value === 'string') {
           state.write(`${quote}${value}${quote}`)
         }
       }
