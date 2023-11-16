@@ -19,7 +19,7 @@ import {
 
 type Program = TSESTree.Program
 type Node = TSESTree.Node
-type LiteralNode = { type: string, value: string|boolean|null|number, raw?: string }
+type LiteralNode = { type: string|null, value: string|number|boolean|null, raw?: string }
 
 export class RepresenterRewriteOutput implements Output {
   constructor(public readonly representation: Program) {}
