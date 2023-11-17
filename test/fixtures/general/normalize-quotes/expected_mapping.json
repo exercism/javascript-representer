@@ -1,0 +1,13 @@
+{
+  "IDENTIFIER_1": "colourDuo",
+  "IDENTIFIER_2": "checkNulls",
+  "IDENTIFIER_3": "checkNumbers",
+  "IDENTIFIER_4": "checkString",
+  "IDENTIFIER_5": "checkBool",
+  "IDENTIFIER_6": "checkNesting",
+  "IDENTIFIER_7": "first",
+  "IDENTIFIER_8": "second",
+  "IDENTIFIER_9": "rest",
+  "IDENTIFIER_10": "COLORS",
+  "IDENTIFIER_11": "indexOf"
+}

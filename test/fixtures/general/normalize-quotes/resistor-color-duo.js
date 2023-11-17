@@ -8,17 +8,21 @@ export const decodedValue = (colourDuo) => {
   let checkNumbers = 666
   let checkString = "please work"
   let checkBool = true
+  let checkNesting = 'this string has "double" and escaped \'single\''
   let [first, second, ...rest] = colourDuo
   return Number(COLORS.indexOf(first) +''+ COLORS.indexOf(second))
 };
 
+// Here is a comment that contains 'single' and "double" quotes
+// And here is another one with `backticks`
+
 const COLORS = [
       'black',
-      'brown',
-      'red',
-      'orange',
+      "brown",
+      `red`,
+      "orange",
       'yellow',
-      'green',
+      "green",
       'blue',
       'violet',
       'grey',
