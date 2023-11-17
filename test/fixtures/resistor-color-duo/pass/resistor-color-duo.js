@@ -7,6 +7,7 @@ export const decodedValue = (colourDuo) => {
   let checkNulls = [null, null, null]
   let checkNumbers = 666
   let checkString = "please work"
+  let checkBool = true
   let [first, second, ...rest] = colourDuo
   return Number(COLORS.indexOf(first) +''+ COLORS.indexOf(second))
 };

@@ -19,7 +19,7 @@ import {
 
 type Program = TSESTree.Program
 type Node = TSESTree.Node
-type LiteralNode = { type: string|null, value: string|number|boolean|null, raw?: string }
+type LiteralNode = { type: string|null, value: string|number|boolean|null, raw: string }
 
 export class RepresenterRewriteOutput implements Output {
   constructor(public readonly representation: Program) {}
@@ -36,10 +36,11 @@ export class RepresenterRewriteOutput implements Output {
       Literal: function (node: LiteralNode, state: State) {
         const { type, value, raw } = node
         const quote = '`';
-        if (type?.startsWith('Lit') && typeof value === 'string') {
+        if ( type === 'Literal' && typeof value === 'string') {
           state.write(`${quote}${value}${quote}`)
         } else {
-          raw && state.write(raw)
+          // passthrough for literals that are not strings -> numbers, bools and null
+          state.write(raw)
         }
       }
     })
