@@ -19,7 +19,11 @@ import {
 
 type Program = TSESTree.Program
 type Node = TSESTree.Node
-type LiteralNode = { type: string|null, value: string|number|boolean|null, raw: string }
+type LiteralNode = {
+  type: string | null
+  value: string | number | boolean | null
+  raw: string
+}
 
 export class RepresenterRewriteOutput implements Output {
   constructor(public readonly representation: Program) {}
@@ -31,21 +35,22 @@ export class RepresenterRewriteOutput implements Output {
     getProcessLogger().log(JSON.stringify(this.representation, undefined, 2))
     const normalized = normalizeRepresentation(this.representation)
 
-
     const quotesFormatGenerator = Object.assign({}, GENERATOR, {
       Literal: function (node: LiteralNode, state: State) {
         const { type, value, raw } = node
-        const quote = '`';
-        if ( type === 'Literal' && typeof value === 'string') {
+        const quote = '`'
+        if (type === 'Literal' && typeof value === 'string') {
           state.write(`${quote}${value}${quote}`)
         } else {
           // passthrough for literals that are not strings -> numbers, bools and null
           state.write(raw)
         }
-      }
+      },
     })
 
-    const representation = generate(normalized.representation, { generator: quotesFormatGenerator })
+    const representation = generate(normalized.representation, {
+      generator: quotesFormatGenerator,
+    })
     const mapping = JSON.stringify(normalized.mapping, undefined, spaces)
 
     return Promise.resolve({ representation, mapping })
