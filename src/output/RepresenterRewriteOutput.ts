@@ -34,10 +34,12 @@ export class RepresenterRewriteOutput implements Output {
 
     const quotesFormatGenerator = Object.assign({}, GENERATOR, {
       Literal: function (node: LiteralNode, state: State) {
-        const { type, value } = node
+        const { type, value, raw } = node
         const quote = '`';
         if (type?.startsWith('Lit') && typeof value === 'string') {
           state.write(`${quote}${value}${quote}`)
+        } else {
+          raw && state.write(raw)
         }
       }
     })

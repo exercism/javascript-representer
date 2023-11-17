@@ -1,0 +1,8 @@
+export const decodedValue = IDENTIFIER_1 => {
+  let IDENTIFIER_2 = [null, null, null];
+  let IDENTIFIER_3 = 666;
+  let IDENTIFIER_4 = `please work`;
+  let [IDENTIFIER_5, IDENTIFIER_6, ...IDENTIFIER_7] = IDENTIFIER_1;
+  return Number(IDENTIFIER_8.IDENTIFIER_9(IDENTIFIER_5) + `` + IDENTIFIER_8.IDENTIFIER_9(IDENTIFIER_6));
+};
+const IDENTIFIER_8 = [`black`, `brown`, `red`, `orange`, `yellow`, `green`, `blue`, `violet`, `grey`, `white`];
