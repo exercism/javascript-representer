@@ -24,18 +24,27 @@ cp -R ${fixtures_dir}/* "${tmp_fixtures_dir}"
 
 # Iterate over all test directories
 for test_file in $(find "${tmp_fixtures_dir}" -name '*.spec.js'); do
-    slug=$(echo "${test_file:${#tmp_fixtures_dir}+1}" | cut -d / -f 1)
-    test_dir=$(dirname "${test_file}")
-    test_dir_name=$(basename "${test_dir}")
+    fixture_dir="${test_file#tmp_fixtures_dir/}"
+    slug="${fixture_dir%%/*}"
+    test_dir="${test_file%/*}"
+    test_dir_name="${test_dir##*/}"
     test_dir_path=$(realpath "${test_dir}")
 
     bin/run.sh "${slug}" "${test_dir_path}" "${test_dir_path}"
 
     for file in representation.txt mapping.json; do
         expected_file="expected_${file}"
+        missing=0
+
         echo "${test_dir_name}: comparing ${file} to ${expected_file}"
 
-        if ! diff "${test_dir_path}/${file}" "${test_dir_path}/${expected_file}"; then
+        for f in "${file}" "${expected_file}"; do
+            if ! [ -e "${test_dir_path}/${f}" ]; then
+                echo "File '${test_dir_path}/${f}' is unexpectedly missing"
+                missing=1
+            fi
+        done
+        if [ $missing -eq 1 ] || ! diff "${test_dir_path}/${file}" "${test_dir_path}/${expected_file}"; then
             exit_code=1
         fi
     done
