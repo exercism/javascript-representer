@@ -9,14 +9,14 @@ on:
 
 jobs:
   precheck:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-26.04
 
     steps:
       - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5
-      - name: Use Node.js LTS (16.x)
+      - name: Use Node.js LTS (24.x)
         uses: actions/setup-node@f1f314fca9dfce2769ece7d933488f076716723e
         with:
-          node-version: 16.x
+          node-version: 24.x
 
       - name: Install project dependencies
         run: yarn install --frozen-lockfile --ignore-scripts
@@ -25,11 +25,11 @@ jobs:
         run: yarn lint
 
   unit_tests:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-26.04
 
     strategy:
       matrix:
-        node-version: [16.x, 18.x]
+        node-version: [24.x, 26.x]
 
     steps:
       - uses: actions/checkout@ee0669bd1cc54295c223e0bb666b733df41de1c5
@@ -42,7 +42,7 @@ jobs:
         run: yarn install --frozen-lockfile
 
   smoke_tests:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-26.04
     steps:
       - name: Checkout code
         uses: actions/checkout@755da8c3cf115ac066823e79a1e1788f8940201b
