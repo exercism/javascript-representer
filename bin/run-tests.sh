@@ -41,4 +41,4 @@ for test_file in $(find "${tmp_fixtures_dir}" -name '*.spec.js'); do
     done
 done
 
-exit ${exit_code}
+exit "${exit_code}"
